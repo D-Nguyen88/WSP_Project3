@@ -52,7 +52,7 @@ public class View extends JFrame {
 		initialize_main_frame(); 
 					
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-	}
+		}
 	
 	public void initialize_dialog() {
 		
@@ -105,23 +105,23 @@ public class View extends JFrame {
 		english_panel = new JPanel(); 
 		spanish_panel = new JPanel(); 		
 		
-		english_input = new JTextField("English Input Text field"); 
-		spanish_input = new JTextField("Spanish Input Text field");
+		english_leftText = new JTextField("English Input Text field"); 
+		spanish_leftText = new JTextField("Spanish Input Text field");
 		
 		english_convertBtn = new JButton("Convert Enlgish"); 
-		spanish_convert = new JButton("Convert Spanish");
+		spanish_convertBtn = new JButton("Convert Spanish");
 		
 		// Button Converter
 		english_convertBtn.addActionListener(e -> c.btnConvert(this));
-		spanish_convert.addActionListener(e -> c.btnConvert(this)); 
+		spanish_convertBtn.addActionListener(e -> c.btnConvert(this)); 
 		
 		english_panel.add(new JLabel("English Label")); 
-		english_panel.add(english_input); 
+		english_panel.add(english_leftText); 
 		english_panel.add(english_convertBtn); 
 		
 		spanish_panel.add(new JLabel("Spanish Label")); 
-		spanish_panel.add(spanish_input); 
-		spanish_panel.add(spanish_convert);
+		spanish_panel.add(spanish_leftText); 
+		spanish_panel.add(spanish_convertBtn);
 				
 		ImageIcon icon = new ImageIcon("images/english.png");
 		mainPanel.addTab("Tab #1", icon, english_panel, "Does nothing");
