@@ -19,21 +19,21 @@ public class Controller {
     {
         m = model;
         m.database();
-    }
-    
-    
+    } 
 
     //This method gets the value in the left textbox and converts it to USD, and then it takes 
     //The value in USD and converts it to the currency from the right drop down.
     public void btnConvert(View v)
     {
-        double leftVal = convertToUSD(Double.parseDouble(v.getLeftText()), v.getLeftDropDown());
-        System.out.println(leftVal);
-        double rightVal = convertToNewCurrency(leftVal, v.getRightDropDown());
-        System.out.println(""+rightVal);
-        v.setRightVal(""+rightVal);
-        m.setLastConversion(v.getRightDropDown());
-        v.updateConver(v.getRightDropDown());
+    	System.out.println("Convert Button");
+    	
+        // double leftVal = convertToUSD(Double.parseDouble(v.getLeftText()), v.getLeftDropDown());
+        // System.out.println(leftVal);
+        // double rightVal = convertToNewCurrency(leftVal, v.getRightDropDown());
+        // System.out.println(""+rightVal);
+        // v.setRightVal(""+rightVal);
+        // m.setLastConversion(v.getRightDropDown());
+        // v.updateConver(v.getRightDropDown());
     }
     
     
