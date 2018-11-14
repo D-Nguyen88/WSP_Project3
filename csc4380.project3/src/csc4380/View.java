@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -13,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class View extends JFrame {
 	
@@ -24,8 +27,9 @@ public class View extends JFrame {
 	JTabbedPane mainPanel;
 	JPanel english_panel; 
 	JPanel spanish_panel; 
+	JPanel chinese_panel; 
 	
-	// Main Components 
+	// Main Components separated by each Tab Pane
 	JTextField english_leftText;
 	JTextField english_rightText; 
 	JTextField spanish_leftText;
@@ -39,10 +43,13 @@ public class View extends JFrame {
 	JButton chinese_convertBtn; 
 	
 	// Convert Feature Values 
-	float rightVal;
-	float leftVal; 
+	int activeTab = 0; 
 	
+	double active_rightVal = 9.99f;
+	double active_leftVal = 18.88f;
 	
+	// For the Controller Model
+	public String country; 
 	
 	public View(Controller c) {
 		
@@ -52,7 +59,8 @@ public class View extends JFrame {
 		initialize_main_frame(); 
 					
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		}
+	
+	}
 	
 	public void initialize_dialog() {
 		
@@ -103,10 +111,19 @@ public class View extends JFrame {
 	public void initialize_main_frame() {
 		mainPanel = new JTabbedPane(); 		
 		english_panel = new JPanel(); 
-		spanish_panel = new JPanel(); 		
+		spanish_panel = new JPanel(); 
+		chinese_panel = new JPanel(); 
 		
-		english_leftText = new JTextField("English Input Text field"); 
-		spanish_leftText = new JTextField("Spanish Input Text field");
+		// Set Layout 
+		english_panel.setLayout(new BoxLayout(english_panel, BoxLayout.Y_AXIS));
+		spanish_panel.setLayout(new BoxLayout(spanish_panel, BoxLayout.X_AXIS));
+		chinese_panel.setLayout(new BoxLayout(chinese_panel, BoxLayout.Y_AXIS)); 
+				
+		english_leftText = new JTextField("English Left Text field"); 
+		english_rightText = new  JTextField("English Right Text field"); 
+		
+		spanish_leftText = new JTextField("Spanish Left Text field");
+		spanish_rightText = new JTextField("Spanish Right Text field"); 
 		
 		english_convertBtn = new JButton("Convert Enlgish"); 
 		spanish_convertBtn = new JButton("Convert Spanish");
@@ -115,8 +132,11 @@ public class View extends JFrame {
 		english_convertBtn.addActionListener(e -> c.btnConvert(this));
 		spanish_convertBtn.addActionListener(e -> c.btnConvert(this)); 
 		
-		english_panel.add(new JLabel("English Label")); 
+		english_panel.add(new JLabel("Left Label")); 
 		english_panel.add(english_leftText); 
+		
+		english_panel.add(new JLabel("Right Label"));
+		english_panel.add(english_rightText);
 		english_panel.add(english_convertBtn); 
 		
 		spanish_panel.add(new JLabel("Spanish Label")); 
@@ -130,6 +150,27 @@ public class View extends JFrame {
 		english_panel.setBackground(Color.red);
 		spanish_panel.setBackground(Color.pink);
 		
+		// Add ActionListener to Tabbed Pane 
+		activeTab = 0; 
+		mainPanel.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				switch(activeTab) {
+				case 0:
+					active_rightVal = Double.parseDouble(english_rightText.getText());
+					active_leftVal = Double.parseDouble(english_leftText.getText());					
+				break; 
+				case 1:
+					active_rightVal = Double.parseDouble(spanish_rightText.getText());
+					active_leftVal = Double.parseDouble(spanish_leftText.getText());
+				break; 
+				case 2:
+					active_rightVal = Double.parseDouble(chinese_rightText.getText());
+					active_leftVal = Double.parseDouble(chinese_leftText.getText());
+				break; 
+				}
+			}
+		});
+		
 		this.add(mainPanel);
 		
 		this.setSize(600, 400);
@@ -138,5 +179,57 @@ public class View extends JFrame {
 	}
 	
 	
+	//  Control Methods GETTERS
+	public String getLeftText() {
+		return null;}
+	
+	public String getLeftDropDown() {
+		return null;}
+	
+	public String getRightText() {
+		return null; 
+	}
+	
+	public String getRightDropDown() {
+		return null; 
+	}
+	
+	// Control Methods SETTERS 
+	public void setRightVal(String string) {
+		
+		
+	}
+
+	public void setLeftVal(String string) {
+		
+		
+	}
+
+	public void setRightDropDown(String leftDropDown) {
+		
+		
+	}
+
+	public void setLeftDropDown(String temp) {
+		
+		
+	}
+	
+	public void updateConver(String rightDropDown) {
+		
+		
+	}
+
+
 	
 }
+
+
+
+
+
+
+
+
+
+

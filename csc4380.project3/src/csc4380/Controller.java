@@ -25,15 +25,16 @@ public class Controller {
     //The value in USD and converts it to the currency from the right drop down.
     public void btnConvert(View v)
     {
+    	// At this point can I distinguish between english and spanish? q
     	System.out.println("Convert Button");
     	
-        // double leftVal = convertToUSD(Double.parseDouble(v.getLeftText()), v.getLeftDropDown());
-        // System.out.println(leftVal);
-        // double rightVal = convertToNewCurrency(leftVal, v.getRightDropDown());
-        // System.out.println(""+rightVal);
-        // v.setRightVal(""+rightVal);
-        // m.setLastConversion(v.getRightDropDown());
-        // v.updateConver(v.getRightDropDown());
+        double leftVal = convertToUSD(Double.parseDouble(v.getLeftText()), v.getLeftDropDown());
+        System.out.println(leftVal);
+        double rightVal = convertToNewCurrency(leftVal, v.getRightDropDown());
+        System.out.println(""+rightVal);
+        v.setRightVal(""+rightVal);
+        m.setLastConversion(v.getRightDropDown());
+        v.updateConver(v.getRightDropDown());
     }
     
     
@@ -45,7 +46,7 @@ public class Controller {
     }
     
     
-    //This method takes the values of the two drop down's and swaps them with eachother
+    //This method takes the values of the two drop down's and swaps them with each other
     public void btnSwap(View v)
     {
         String temp = v.getRightDropDown();
