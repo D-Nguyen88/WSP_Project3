@@ -6,11 +6,18 @@
 package csc4380;
 
 import java.beans.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -139,5 +146,56 @@ public class Model implements Serializable {
     
     String getCurrency() {
         return dbBean.getCurrency(current_native);
+    }
+    
+    void writeTransactionToFile(String currFrm, String amtFrom, String currTo, String amtTo){
+        Transaction t = new Transaction(current_user, currFrm, amtFrom, currTo, amtTo);
+        try { 
+  
+            // Open given file in append mode. 
+            String localDir = System.getProperty("user.dir");
+            BufferedWriter out = new BufferedWriter(new FileWriter(localDir + "\\src\\resources\\transactions.txt", true)); 
+            out.write(t.print());
+            out.newLine();
+            out.close(); 
+        } 
+        catch (IOException e) { 
+            System.out.println("exception occoured" + e); 
+        } 
+    }
+    
+    ArrayList<Transaction> readTransactionsFromFile() {
+        //Searches through the logs for all transactions with this current user
+        ArrayList<Transaction> transactionList = new ArrayList<Transaction>();
+        BufferedReader br = null;
+        try {
+            String localDir = System.getProperty("user.dir");
+            br = new BufferedReader(new FileReader(localDir + "\\src\\resources\\transactions.txt"));
+            String line;
+            while ((line = br.readLine()) != null) {
+
+                // use comma as separator
+                String[] transaction = line.split(",");
+
+                Transaction t = new Transaction(transaction[0], transaction[1], transaction[2], transaction[3], transaction[4], transaction[5]);
+                transactionList.add(t);
+
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return transactionList;
+
     }
 }
