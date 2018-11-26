@@ -84,6 +84,14 @@ public class View extends JFrame {
 	
 	}
 	
+	// For Testing
+	public View() {
+		initialize_dialog(); 
+		initialize_main_frame(); 
+					
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);		
+	}
+	
 	public void initialize_dialog() {
 		
 		dialogPanel = new JPanel(); 
@@ -239,34 +247,58 @@ public class View extends JFrame {
 		//				-[]_btnGroup
 		//				-[]_rightPanel
 		for (int m = 0; m < components.length; m++) {
+			
+			JPanel leftPanel = null;
+			JPanel rightPanel = null;
+			JPanel btnGroup = null;
+
 			switch(m) {
 			case 0:
-				english_leftPanel.add(components[m][2]); //leftDropdown
-				english_rightPanel.add(components[m][3]); //rightDropdown 
-				english_leftPanel.add(components[m][0]); //leftText
-				english_rightPanel.add(components[m][1]); //rightText				
-				english_btnGroup.add(components[m][4]); //convertBtn 
-				english_btnGroup.add(components[m][5]); //swapBtn 
-				english_btnGroup.add(components[m][6]); //clearBtn  			
-				break;
+				System.out.println("English case");
+				leftPanel = english_leftPanel; 
+				rightPanel = english_rightPanel; 
+				btnGroup = english_btnGroup; 
+				break; 
 			case 1:
+				System.out.println("Spanish case");
+				leftPanel = spanish_leftPanel; 
+				rightPanel = spanish_rightPanel;
+				btnGroup = spanish_btnGroup; 
 				break; 
 			case 2: 
-				break; 
-			}
+				System.out.println("Chinese case");
+				leftPanel = chinese_leftPanel;
+				rightPanel = chinese_rightPanel; 
+				btnGroup = chinese_btnGroup; 
+			}			
+			
+			leftPanel.add(components[m][2]); //leftDropdown
+			rightPanel.add(components[m][3]); //rightDropdown 
+			leftPanel.add(components[m][0]); //leftText
+			rightPanel.add(components[m][1]); //rightText				
+			btnGroup.add(components[m][4]); //convertBtn 
+			btnGroup.add(components[m][5]); //swapBtn 
+			btnGroup.add(components[m][6]); //clearBtn  			 				
+		
 		}	
-		
-		
+				
 		// Set Panel Properties 
 		english_leftPanel.setBackground(Color.green);
 		english_btnGroup.setBackground(Color.pink);
 		english_rightPanel.setBackground(Color.red);
+		english_userPanel.setBackground(Color.blue);
 		
 		// Set Layout 
 		english_leftPanel.setLayout(new BoxLayout(english_leftPanel, BoxLayout.Y_AXIS));
 		english_btnGroup.setLayout(new BoxLayout(english_btnGroup, BoxLayout.Y_AXIS));
 		english_rightPanel.setLayout(new BoxLayout(english_rightPanel, BoxLayout.Y_AXIS));
-				
+		spanish_leftPanel.setLayout(new BoxLayout(spanish_leftPanel, BoxLayout.Y_AXIS));
+		spanish_btnGroup.setLayout(new BoxLayout(spanish_btnGroup, BoxLayout.Y_AXIS));
+		spanish_rightPanel.setLayout(new BoxLayout(spanish_rightPanel, BoxLayout.Y_AXIS));
+		chinese_leftPanel.setLayout(new BoxLayout(chinese_leftPanel, BoxLayout.Y_AXIS));
+		chinese_btnGroup.setLayout(new BoxLayout(chinese_btnGroup, BoxLayout.Y_AXIS));
+		chinese_rightPanel.setLayout(new BoxLayout(chinese_rightPanel, BoxLayout.Y_AXIS));
+
 		english_panel.setLayout(new BoxLayout(english_panel, BoxLayout.X_AXIS));
 		spanish_panel.setLayout(new BoxLayout(spanish_panel, BoxLayout.X_AXIS));
 		chinese_panel.setLayout(new BoxLayout(chinese_panel, BoxLayout.X_AXIS));
@@ -276,9 +308,19 @@ public class View extends JFrame {
 		english_conversionPanel.add(english_leftPanel); 
 		english_conversionPanel.add(english_btnGroup); 
 		english_conversionPanel.add(english_rightPanel); 
+		spanish_conversionPanel.add(spanish_leftPanel);
+		spanish_conversionPanel.add(spanish_btnGroup); 
+		spanish_conversionPanel.add(spanish_rightPanel);
+		chinese_conversionPanel.add(chinese_leftPanel);
+		chinese_conversionPanel.add(chinese_btnGroup); 
+		chinese_conversionPanel.add(chinese_rightPanel);
 		
 		english_panel.add(english_userPanel);
-		english_panel.add(english_conversionPanel); 		
+		english_panel.add(english_conversionPanel); 	
+		spanish_panel.add(spanish_userPanel); 
+		spanish_panel.add(spanish_conversionPanel); 
+		chinese_panel.add(chinese_userPanel); 
+		chinese_panel.add(chinese_conversionPanel); 
 		
 		this.add(mainPanel);
 		
@@ -375,6 +417,11 @@ public class View extends JFrame {
 		
 	}
 	
+	// Other Methods 
+	
+	public void goHome() {
+		
+	}
 
 
 	
