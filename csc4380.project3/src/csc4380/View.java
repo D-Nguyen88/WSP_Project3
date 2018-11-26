@@ -27,8 +27,11 @@ public class View extends JFrame {
 	JDialog dialog; 
 	JPanel dialogPanel; 
 	
-	// Panel Layout 
+	// Dialog Components
+	JButton loginBtn; 
+	JButton signupBtn; 
 	
+	// Main Panel Layout 	
 	JTabbedPane mainPanel;
 	JPanel english_panel; 
 	JPanel spanish_panel; 
@@ -101,6 +104,9 @@ public class View extends JFrame {
 		
 		JLabel loginLabel = new JLabel("Login");
 		JLabel registerLabel = new JLabel("Register"); 
+		loginBtn = new JButton("Login"); 
+		signupBtn = new JButton("Sign Up"); 
+		
 		
 		loginLabel.setFont(new Font("Sans-Serif", Font.PLAIN, 25)); 
 		registerLabel.setFont(new Font("Sans-Serif", Font.PLAIN, 25));
@@ -125,11 +131,16 @@ public class View extends JFrame {
 		dialogPanel.add(new JLabel("")); 
 		dialogPanel.add(new JTextField("Native Country"));
 			
-		dialogPanel.add(new JButton("Login"));
-		dialogPanel.add(new JButton("Register"));
+		dialogPanel.add(loginBtn);
+		dialogPanel.add(signupBtn);
 		dialogPanel.add(new JLabel("")); 
 		dialogPanel.add(new JLabel(""));
 
+		// Set Action Listeners for Login/Register 
+		// loginBtn.addActionListener(e -> c.someControllerMethodNotYetDefined);
+		// signupBtn.addActionListener(e -> c.someControllerethodNotYetDefined);
+				
+		
 		dialog = new JDialog();
 		dialog.add(dialogPanel);
 		dialog.setSize(500, 400);
@@ -363,10 +374,13 @@ public class View extends JFrame {
 	}
 	
 	public String getLeftText() {
-		return null;}
+		
+		return null;
+	}
 	
 	public String getLeftDropDown() {
-		return null;}
+		return null;
+	}
 	
 	public String getRightText() {
 		return null; 
