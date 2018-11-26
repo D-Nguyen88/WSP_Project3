@@ -65,7 +65,7 @@ public class View extends JFrame {
 	
 	// Main Components separated by each Tab Pane
 	// Multi-Dimensional Componenet Array for handling Multi-Tabs
-	JComponent[][] components = new JComponent[3][7]; 
+	JComponent[][] components = new JComponent[2][7]; 
 	JTextField 	english_leftText,		spanish_leftText,		chinese_leftText; 
 	JTextField 	english_rightText,		spanish_rightText,		chinese_rightText; 
 	JComboBox 	english_leftDropdown,		spanish_leftDropdown,		chinese_leftDropdown;
@@ -74,8 +74,16 @@ public class View extends JFrame {
 	JButton 	english_swapBtn,		spanish_swapBtn,		chinese_swapBtn; 
 	JButton 	english_clearBtn,		spanish_clearBtn,		chinese_clearBtn;  
 	
+        JComponent[][] user_componenets = new JComponent[3][2]; 
+        JLabel english_userName,        spanish_userName,       chinese_userName; 
+        JLabel english_lastConversion,  spanish_lastConversion, chinese_lastConversion; 
+        JLabel english_nativeCountry,   spanish_nativeCountry,  chinese_nativeCountry;
+        
 	// True Global Variables 
-		
+        String username; 
+        String lastConversion;
+        String nativeCountry;
+        
 	double active_rightVal = 9.99f;
 	double active_leftVal = 18.88f;
 	
@@ -236,8 +244,7 @@ public class View extends JFrame {
 		mainPanel.addTab("English", createImageIcon("/images/english.gif"), english_panel, "Does nothing");
 		mainPanel.addTab("Spanish", createImageIcon("/images/spanish.gif"), spanish_panel, "hello");
 		mainPanel.addTab("Chinese", createImageIcon("/images/chinese.gif"), chinese_panel, "chinese words");
-		
-		
+	
 		// Add ActionListener to Tabbed-Panel 
 		mainPanel.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
@@ -306,8 +313,17 @@ public class View extends JFrame {
 			btnGroup.add(components[m][5]); //swapBtn 
 			btnGroup.add(components[m][6]); //clearBtn  			 				
 		
-		}	
-				
+		}
+                
+                // Initialize User Panel 
+                user_componenets[0][0] = english_userName = new JLabel("User Name" + username);
+                
+                
+                
+                
+                english_userPanel.add(english_userName); 
+                
+                
 		// Set Panel Properties 
 		english_leftPanel.setBackground(Color.green);
 		english_btnGroup.setBackground(Color.pink);
@@ -329,7 +345,6 @@ public class View extends JFrame {
 		spanish_panel.setLayout(new BoxLayout(spanish_panel, BoxLayout.X_AXIS));
 		chinese_panel.setLayout(new BoxLayout(chinese_panel, BoxLayout.X_AXIS));
 				
-		
 		// Composite Panels 		
 		english_conversionPanel.add(english_leftPanel); 
 		english_conversionPanel.add(english_btnGroup); 
@@ -353,8 +368,8 @@ public class View extends JFrame {
 		this.setSize(600, 400);
 		this.setVisible(true);
 		
-	}
-	
+	}	
+        
 	// Utility Functions 
 	
     protected static ImageIcon createImageIcon(String path) {
@@ -383,9 +398,13 @@ public class View extends JFrame {
 	public String getLoginPass() {
             return login_passTextField.getText(); 
 	}
-	
+        
+        public String getCountry() {
+            return register_countryTextField.getText(); 
+        }
+        
 	public String getStatus() {
-		return null; 
+            return null; 
 	}
 	
 	public String getLeftText() {
@@ -458,6 +477,18 @@ public class View extends JFrame {
                     break; 
             }	
 	}
+        
+        public void setUsername(String username) {
+            this.username = username; 
+        }
+        
+        public void setLastConversion(String lastConversion) {
+            this.lastConversion = lastConversion;
+        }
+        
+        public void setNativeCountry(String nativeCountry) {
+            this.nativeCountry = nativeCountry; 
+        }
 	
 	public void updateConver(String rightDropDown) {
 		
