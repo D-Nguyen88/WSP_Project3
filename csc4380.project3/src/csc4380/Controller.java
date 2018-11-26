@@ -18,7 +18,6 @@ public class Controller {
     public Controller(Model model)
     {
         m = model;
-        m.database();
     } 
 
     //This method gets the value in the left textbox and converts it to USD, and then it takes 
