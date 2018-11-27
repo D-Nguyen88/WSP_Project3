@@ -29,7 +29,7 @@ public class DatabaseBean implements Serializable {
     private Connection con;
     private java.sql.Statement st;
     private ResultSet rs;
-    private String  jdbc_drivers;
+    private String  jdbc_drivers = "com.mysql.jdbc.Driver";
     
     
     public DatabaseBean() {
