@@ -635,13 +635,18 @@ public class View extends JFrame {
         public void showConvert(){
         setVisible(true);
         }
+        public void hideSignin(){
+        dialog.setVisible(false);
+        }
         
         public void hideConvert(){
         setVisible(true);
         }
 	
 	public void loadUserInfo(String[] userInfo) {
-		
+            register_userTextField.setText(userInfo[0]);
+            register_passTextField.setText(userInfo[1]);
+            register_countryTextField.setText(userInfo[2]);
 	}
         
         

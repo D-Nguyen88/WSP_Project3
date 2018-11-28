@@ -68,6 +68,8 @@ public class Controller {
         m.createUser(v.getSignUpUser(), v.getSignUpPass());
         v.setStatus(m.getStatus());
         m.setNative(v.getCountry());
+        v.hideSignin();
+        v.showConvert();
         
     }
     
@@ -81,6 +83,7 @@ public class Controller {
         m.login(v.getLoginUser(), v.getLoginPass());
         v.setStatus(m.getStatus());
         if(m.getStatus().equals("login success")) {
+            v.hideSignin();
             v.showConvert();
             v.loadUserInfo(m.getUserInfo());
             v.setLeftDropDown(m.getCurrency());
@@ -111,6 +114,8 @@ public class Controller {
         m.deleteUser();
         //v.goHome();
     }
+    
+    
 
 
     
