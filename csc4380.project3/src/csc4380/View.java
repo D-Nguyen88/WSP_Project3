@@ -254,6 +254,7 @@ public class View extends JFrame {
                 english_swapBtn.addActionListener(e -> c.btnSwap(this));
                 spanish_swapBtn.addActionListener(e -> c.btnSwap(this));
                 chinese_swapBtn.addActionListener(e -> c.btnSwap(this)); 
+                    
                 // Add JComboBox ActionsListneres 
                 for (int i = 0; i < components.length; i++) {
                     ((JComboBox)(components[i][2])).addActionListener(new ActionListener() {                       
