@@ -34,7 +34,7 @@ public class Controller {
         System.out.println(""+rightVal);
         v.setRightVal(""+rightVal);
         m.setLastConversion(v.getRightDropDown());
-        v.updateConver(v.getRightDropDown());
+        v.updateConvert(v.getRightDropDown());
     }
     
     
