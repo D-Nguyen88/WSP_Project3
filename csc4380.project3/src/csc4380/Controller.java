@@ -18,6 +18,7 @@ public class Controller {
     public Controller(Model model)
     {
         m = model;
+       
     } 
 
     //This method gets the value in the left textbox and converts it to USD, and then it takes 
@@ -76,10 +77,11 @@ public class Controller {
     //the profile tab
     public void btnLogin(View v)
     {
+        
         m.login(v.getLoginUser(), v.getLoginPass());
         v.setStatus(m.getStatus());
         if(m.getStatus().equals("login success")) {
-            v.unlockProfile();
+            v.showConvert();
             v.loadUserInfo(m.getUserInfo());
             v.setLeftDropDown(m.getCurrency());
         } else
