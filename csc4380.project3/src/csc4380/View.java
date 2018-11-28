@@ -645,9 +645,9 @@ public class View extends JFrame {
         }
 	
 	public void loadUserInfo(String[] userInfo) {
-            register_userTextField.setText(userInfo[0]);
-            register_passTextField.setText(userInfo[1]);
-            register_countryTextField.setText(userInfo[2]);
+            english_userName.setText("Username: " +userInfo[0]);
+            english_nativeCountry.setText("Native Country: "+userInfo[1]);
+            english_lastConversion.setText("Last Transaction: " + userInfo[2]);
 	}
         
         
