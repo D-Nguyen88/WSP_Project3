@@ -28,7 +28,7 @@ import java.util.logging.Logger;
 public class Model implements Serializable {
     
     private String url, user, password = "";
-    private String current_user, current_native, current_lastConver;
+    private String current_user = "", current_native, current_lastConver;
     private String status;
     
     public static final String PROP_SAMPLE_PROPERTY = "sampleProperty";
