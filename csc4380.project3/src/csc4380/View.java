@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -75,18 +77,26 @@ public class View extends JFrame {
 	JButton 	english_swapBtn,		spanish_swapBtn,		chinese_swapBtn; 
 	JButton 	english_clearBtn,		spanish_clearBtn,		chinese_clearBtn;  
 	
+        // JComboBox Text Options 
+        // Combo test String 
+        String[] english_choices =  {"Argentine Peso", "Australian Dollar", "Bahraini Dinar", "Botswana Pula", "Brazilian Real", "British Pound", "Bruneian Dollar", "Bulgarian Lev", "Canadian Dollar", "Chilean Peso", "Chinese Yuan Renminbi", "Colombian Peso", "Croatian Kuna", "Czech Koruna", "Danish Krone", "Emirati Dirham", "Euro", "Hong Kong Dollar", "Hungarian Forint", "Icelandic Krona", "Indian Rupee", "Indonesian Rupiah", "Iranian Rial", "Israeli Shekel", "Japanese Yen", "Kazakhstani Tenge", "Kuwaiti Dinar", "Libyan Dinar", "Malaysian Ringgit", "Mauritian Rupee", "Mexican Peso", "Nepalese Rupee", "New Zealand Dollar", "Norwegian Krone", "Omani Rial", "Pakistani Rupee", "Philippine Peso", "Polish Zloty", "Qatari Riyal", "Romanian New Leu", "Russian Ruble", "Saudi Arabian Riyal", "Singapore Dollar", "South African Rand", "South Korean Won", "Sri Lankan Rupee", "Swedish Krona", "Swiss Franc", "Taiwan New Dollar", "Thai Baht", "Trinidadian Dollar", "Turkish Lira", "US Dollar", "Venezuelan Bolivar"};
+	String[] spanish_choices = {"Peso argentino", "DÃ³lar australiano", "Dinar bahreinÃ­", "Botswana Pula", "Real brasileÃ±o", "Libra esterlina", "DÃ³lar de Brunei", "Leva bÃºlgara", "DÃ³lar canadiense", "Peso chileno", "Yuan renminbi chino", "Peso colombiano", "Kuna croata", "Corona checa", "Corona danesa", "Dirham emirati", "Euro", "DÃ³lar de Hong Kong", "FlorÃ­n hÃºngaro", "Corona islandesa" , "Rupia india", "Rupia indonesia", "Rial iranÃ­", "Shekel israelÃ­", "Yen japonÃ©s", "Tenge de KazajstÃ¡n", "Dinar kuwaitÃ­", "Dinar libio", "Ringgit de Malasia", "Rupia de Mauricio" , "Peso mexicano", "Rupia nepalÃ­", "DÃ³lar neozelandÃ©s", "Corona noruega", "Rial omanÃ­", "Rupia pakistanÃ­", "Peso filipino", "Zloty polaco", "Riyal qatarÃ­", "Rumano nuevo Leu "," Rublo ruso "," Riyal de Arabia Saudita "," DÃ³lar de Singapur "," Rand sudafricano "," Won surcoreano "," Rupia de Sri Lanka "," Corona sueca "," Franco suizo "," TaiwÃ¡n NuevoDÃ³lar "," Baht tailandÃ©s "," DÃ³lar trinitense "," Lira turca "," DÃ³lar estadounidense "," BolÃ­var venezolano"}; 
+        String[] chinese_choices = {"é˜¿æ ¹å»·æ¯”ç´¢","æ¾³å¤§åˆ©äºžå…ƒ","å·´æž—ç¬¬ç´�çˆ¾","å�šèŒ¨ç“¦ç´�æ™®æ‹‰","å·´è¥¿é›·äºžçˆ¾","è‹±éŽŠ","æ–‡è�Šå…ƒ","ä¿�åŠ åˆ©äºžåˆ—å¼—","åŠ æ‹¿å¤§å…ƒ","æ™ºåˆ©æ¯”ç´¢", "äººæ°‘å¹£","å“¥å€«æ¯”äºžæ¯”ç´¢","å…‹ç¾…åœ°äºžåº«ç´�","æ�·å…‹å…‹æœ—","ä¸¹éº¥å…‹æœ—","é˜¿è�¯é…‹è¿ªæ‹‰å§†","æ­�å…ƒ","æ¸¯å¹£","åŒˆç‰™åˆ©ç¦�æž—","å†°å³¶å…‹æœ—" ,"å�°åº¦ç›§æ¯”","å�°å°¼ç›§æ¯”","ä¼Šæœ—é‡Œäºžçˆ¾","ä»¥è‰²åˆ—è¬�å…‹çˆ¾","æ—¥å…ƒ","å“ˆè–©å…‹æ–¯å�¦å …æˆˆ","ç§‘å¨�ç‰¹ç¬¬ç´�çˆ¾","åˆ©æ¯”äºžç¬¬ç´�çˆ¾","é¦¬ä¾†è¥¿äºžæž—å�‰ç‰¹","æ¯›é‡Œæ±‚æ–¯ç›§æ¯”" ,"å¢¨è¥¿å“¥æ¯”ç´¢","å°¼æ³Šçˆ¾ç›§æ¯”","æ–°è¥¿è˜­å…ƒ","æŒªå¨�å…‹æœ—","é˜¿æ›¼é‡Œäºžçˆ¾","å·´åŸºæ–¯å�¦ç›§æ¯”","è�²å¾‹è³“æ¯”ç´¢","æ³¢è˜­èŒ²ç¾…æ��","å�¡å¡”çˆ¾é‡Œäºžçˆ¾","ç¾…é¦¬å°¼äºžæ–°Leu","ä¿„ç¾…æ–¯ç›§å¸ƒ","æ²™ç‰¹é˜¿æ‹‰ä¼¯é‡Œäºžçˆ¾","æ–°åŠ å�¡å…ƒ","å�—é�žè˜­ç‰¹","éŸ“å…ƒ","æ–¯é‡Œè˜­å�¡ç›§æ¯”","ç‘žå…¸å…‹æœ—","ç‘žå£«æ³•éƒŽ","å�°ç�£æ–°ç¾Žå…ƒ","æ³°éŠ–","ç‰¹ç«‹å°¼é�”å…ƒ","åœŸè€³å…¶é‡Œæ‹‰","ç¾Žå…ƒ","å§”å…§ç‘žæ‹‰çŽ»åˆ©ç“¦çˆ¾"}; 
+        
         JComponent[][] user_components = new JComponent[3][4]; 
         JLabel      english_userName,        spanish_userName,       chinese_userName; 
         JLabel      english_lastConversion,  spanish_lastConversion, chinese_lastConversion; 
         JLabel      english_nativeCountry,   spanish_nativeCountry,  chinese_nativeCountry;
-        JTextArea   english_textArea,     spanish_textArea,       chinese_textArea;
-        
+        JTextArea   english_textArea,        spanish_textArea,       chinese_textArea;        
         
 	// True Global Variables 
         String username; 
         String lastConversion;
         String nativeCountry;
         String textArea; 
+        
+        String active_rightDropDown; 
+        String active_leftDropDown;
         
 	double active_rightVal = 9.99f;
 	double active_leftVal = 18.88f;
@@ -197,12 +207,7 @@ public class View extends JFrame {
 		
 		english_rightPanel = new JPanel(); 
 		spanish_rightPanel = new JPanel(); 
-		chinese_rightPanel = new JPanel(); 
-		
-		// Combo test String 
-		String[] english_choices =  {"Argentine Peso", "Australian Dollar", "Bahraini Dinar", "Botswana Pula", "Brazilian Real", "British Pound", "Bruneian Dollar", "Bulgarian Lev", "Canadian Dollar", "Chilean Peso", "Chinese Yuan Renminbi", "Colombian Peso", "Croatian Kuna", "Czech Koruna", "Danish Krone", "Emirati Dirham", "Euro", "Hong Kong Dollar", "Hungarian Forint", "Icelandic Krona", "Indian Rupee", "Indonesian Rupiah", "Iranian Rial", "Israeli Shekel", "Japanese Yen", "Kazakhstani Tenge", "Kuwaiti Dinar", "Libyan Dinar", "Malaysian Ringgit", "Mauritian Rupee", "Mexican Peso", "Nepalese Rupee", "New Zealand Dollar", "Norwegian Krone", "Omani Rial", "Pakistani Rupee", "Philippine Peso", "Polish Zloty", "Qatari Riyal", "Romanian New Leu", "Russian Ruble", "Saudi Arabian Riyal", "Singapore Dollar", "South African Rand", "South Korean Won", "Sri Lankan Rupee", "Swedish Krona", "Swiss Franc", "Taiwan New Dollar", "Thai Baht", "Trinidadian Dollar", "Turkish Lira", "US Dollar", "Venezuelan Bolivar"};
-		String[] spanish_choices = {"Peso argentino", "DÃ³lar australiano", "Dinar bahreinÃ­", "Botswana Pula", "Real brasileÃ±o", "Libra esterlina", "DÃ³lar de Brunei", "Leva bÃºlgara", "DÃ³lar canadiense", "Peso chileno", "Yuan renminbi chino", "Peso colombiano", "Kuna croata", "Corona checa", "Corona danesa", "Dirham emirati", "Euro", "DÃ³lar de Hong Kong", "FlorÃ­n hÃºngaro", "Corona islandesa" , "Rupia india", "Rupia indonesia", "Rial iranÃ­", "Shekel israelÃ­", "Yen japonÃ©s", "Tenge de KazajstÃ¡n", "Dinar kuwaitÃ­", "Dinar libio", "Ringgit de Malasia", "Rupia de Mauricio" , "Peso mexicano", "Rupia nepalÃ­", "DÃ³lar neozelandÃ©s", "Corona noruega", "Rial omanÃ­", "Rupia pakistanÃ­", "Peso filipino", "Zloty polaco", "Riyal qatarÃ­", "Rumano nuevo Leu "," Rublo ruso "," Riyal de Arabia Saudita "," DÃ³lar de Singapur "," Rand sudafricano "," Won surcoreano "," Rupia de Sri Lanka "," Corona sueca "," Franco suizo "," TaiwÃ¡n NuevoDÃ³lar "," Baht tailandÃ©s "," DÃ³lar trinitense "," Lira turca "," DÃ³lar estadounidense "," BolÃ­var venezolano"}; 
-                String[] chinese_choices = {"é˜¿æ ¹å»·æ¯”ç´¢","æ¾³å¤§åˆ©äºžå…ƒ","å·´æž—ç¬¬ç´�çˆ¾","å�šèŒ¨ç“¦ç´�æ™®æ‹‰","å·´è¥¿é›·äºžçˆ¾","è‹±éŽŠ","æ–‡è�Šå…ƒ","ä¿�åŠ åˆ©äºžåˆ—å¼—","åŠ æ‹¿å¤§å…ƒ","æ™ºåˆ©æ¯”ç´¢", "äººæ°‘å¹£","å“¥å€«æ¯”äºžæ¯”ç´¢","å…‹ç¾…åœ°äºžåº«ç´�","æ�·å…‹å…‹æœ—","ä¸¹éº¥å…‹æœ—","é˜¿è�¯é…‹è¿ªæ‹‰å§†","æ­�å…ƒ","æ¸¯å¹£","åŒˆç‰™åˆ©ç¦�æž—","å†°å³¶å…‹æœ—" ,"å�°åº¦ç›§æ¯”","å�°å°¼ç›§æ¯”","ä¼Šæœ—é‡Œäºžçˆ¾","ä»¥è‰²åˆ—è¬�å…‹çˆ¾","æ—¥å…ƒ","å“ˆè–©å…‹æ–¯å�¦å …æˆˆ","ç§‘å¨�ç‰¹ç¬¬ç´�çˆ¾","åˆ©æ¯”äºžç¬¬ç´�çˆ¾","é¦¬ä¾†è¥¿äºžæž—å�‰ç‰¹","æ¯›é‡Œæ±‚æ–¯ç›§æ¯”" ,"å¢¨è¥¿å“¥æ¯”ç´¢","å°¼æ³Šçˆ¾ç›§æ¯”","æ–°è¥¿è˜­å…ƒ","æŒªå¨�å…‹æœ—","é˜¿æ›¼é‡Œäºžçˆ¾","å·´åŸºæ–¯å�¦ç›§æ¯”","è�²å¾‹è³“æ¯”ç´¢","æ³¢è˜­èŒ²ç¾…æ��","å�¡å¡”çˆ¾é‡Œäºžçˆ¾","ç¾…é¦¬å°¼äºžæ–°Leu","ä¿„ç¾…æ–¯ç›§å¸ƒ","æ²™ç‰¹é˜¿æ‹‰ä¼¯é‡Œäºžçˆ¾","æ–°åŠ å�¡å…ƒ","å�—é�žè˜­ç‰¹","éŸ“å…ƒ","æ–¯é‡Œè˜­å�¡ç›§æ¯”","ç‘žå…¸å…‹æœ—","ç‘žå£«æ³•éƒŽ","å�°ç�£æ–°ç¾Žå…ƒ","æ³°éŠ–","ç‰¹ç«‹å°¼é�”å…ƒ","åœŸè€³å…¶é‡Œæ‹‰","ç¾Žå…ƒ","å§”å…§ç‘žæ‹‰çŽ»åˆ©ç“¦çˆ¾"}; 
+		chinese_rightPanel = new JPanel();
 				
 		english_leftText = new JTextField("1.0"); 
 		english_rightText = new  JTextField("1.0");
@@ -244,7 +249,28 @@ public class View extends JFrame {
 		english_clearBtn.addActionListener(e -> c.btnClear(this));
 		spanish_clearBtn.addActionListener(e -> c.btnClear(this)); 
 		chinese_clearBtn.addActionListener(e -> c.btnClear(this));
-		
+                
+                // Add JComboBox ActionsListneres 
+                for (int i = 0; i < components.length; i++) {
+                    ((JComboBox)(components[i][2])).addActionListener(new ActionListener() {                       
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            
+                            System.out.println("Lets go: " + ((JComboBox)(e.getSource())).getSelectedIndex());
+                            
+                            switch(((JComboBox)(e.getSource())).getSelectedIndex()) {
+                                case 0: 
+                                    break; 
+                                case 1:
+                                    break;
+                                case 2:
+                                    break; 
+                            }
+                        }     
+                                          
+                    });
+                    
+                }
 		mainPanel.addTab("English", createImageIcon("/images/english.gif"), english_panel, "Does nothing");
 		mainPanel.addTab("Spanish", createImageIcon("/images/spanish.gif"), spanish_panel, "hello");
 		mainPanel.addTab("Chinese", createImageIcon("/images/chinese.gif"), chinese_panel, "chinese words");
@@ -256,17 +282,23 @@ public class View extends JFrame {
 				case 0:
 					System.out.println("English Tab");
 					active_rightVal = Double.parseDouble(english_rightText.getText());
-					active_leftVal = Double.parseDouble(english_leftText.getText());					
+					active_leftVal = Double.parseDouble(english_leftText.getText());
+                                        active_leftDropDown = english_choices[english_leftDropdown.getSelectedIndex()];
+                                        active_rightDropDown = english_choices[english_rightDropdown.getSelectedIndex()];                                       
 				break; 
 				case 1:
 					System.out.println("Spanish Tab");
 					active_rightVal = Double.parseDouble(spanish_rightText.getText());
 					active_leftVal = Double.parseDouble(spanish_leftText.getText());
+                                        active_leftDropDown = english_choices[spanish_leftDropdown.getSelectedIndex()];
+                                        active_rightDropDown = english_choices[spanish_rightDropdown.getSelectedIndex()]; 
 				break; 
 				case 2:
 					System.out.println("Chinese Tab");
 					active_rightVal = Double.parseDouble(chinese_rightText.getText());
 					active_leftVal = Double.parseDouble(chinese_leftText.getText());
+                                        active_leftDropDown = english_choices[spanish_leftDropdown.getSelectedIndex()];
+                                        active_rightDropDown = english_choices[spanish_rightDropdown.getSelectedIndex()]; 
 				break; 
 				}
 				System.out.println("Active Vals: (" + active_leftVal + " | " + active_rightVal + ")");
@@ -438,7 +470,7 @@ public class View extends JFrame {
 	}
 	
 	public String getLeftDropDown() {
-            return null;
+            return active_leftDropDown;
 	}
 	
 	public String getRightText() {
@@ -446,7 +478,7 @@ public class View extends JFrame {
 	}
 	
 	public String getRightDropDown() {
-            return null; 
+            return active_rightDropDown; 
 	}
 	
 	// Control Methods SETTERS 
@@ -482,26 +514,32 @@ public class View extends JFrame {
             }			
 	}
 	
-	public void setRightDropDown(String leftDropDown) {
+	public void setRightDropDown(String rightDropdown) {
             switch (mainPanel.getSelectedIndex()) {
                 case 0:
+                    english_rightDropdown.setSelectedItem(rightDropdown);
                     break; 
                 case 1:
+                    spanish_rightDropdown.setSelectedItem(rightDropdown);
                     break; 
                 case 2: 
+                    chinese_rightDropdown.setSelectedItem(rightDropdown);
                     break; 
             }          
 	}
 
-	public void setLeftDropDown(String temp) {
+	public void setLeftDropDown(String leftDropdown) {
             switch (mainPanel.getSelectedIndex()) {
                 case 0:
+                    english_leftDropdown.setSelectedItem(leftDropdown);
                     break; 
                 case 1:
+                    spanish_leftDropdown.setSelectedItem(leftDropdown);
                     break; 
                 case 2: 
+                    chinese_leftDropdown.setSelectedItem(leftDropdown);
                     break; 
-            }	
+            }       
 	}
         
         public void setUsername(String username) {
