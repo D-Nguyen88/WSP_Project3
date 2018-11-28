@@ -611,7 +611,8 @@ public class View extends JFrame {
         {
             try{
             //the file path
-            String path = "C:\\Users\\trimo\\Desktop\\TextFile.txt";
+            String localDir = System.getProperty("user.dir");
+            String path = localDir + "\\src\\resources\\transactions.txt";
             File file = new File(path);
             FileReader fr = new FileReader(file);
             while(fr.read() != -1){
