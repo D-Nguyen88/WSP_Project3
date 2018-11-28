@@ -581,6 +581,9 @@ public class View extends JFrame {
         public void showConvert(){
         setVisible(true);
         }
+        public void hideSignin(){
+        dialogPanel.setVisible(false);
+        }
         
         public void hideConvert(){
         setVisible(false);
