@@ -110,7 +110,9 @@ public class View extends JFrame {
 				
 		initialize_dialog(); 
 		initialize_main_frame(); 
-					
+		hideConvert();
+                
+                
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	
 	}
@@ -575,10 +577,20 @@ public class View extends JFrame {
 	public void lockProfile() {
 		
 	}
+        
+        public void showConvert(){
+        setVisible(true);
+        }
+        
+        public void hideConvert(){
+        setVisible(false);
+        }
 	
 	public void loadUserInfo(String[] userInfo) {
 		
 	}
+        
+        
         
 }
 
