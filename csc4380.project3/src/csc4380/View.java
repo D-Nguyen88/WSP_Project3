@@ -244,6 +244,15 @@ public class View extends JFrame {
 		english_clearBtn.addActionListener(e -> c.btnClear(this));
 		spanish_clearBtn.addActionListener(e -> c.btnClear(this)); 
 		chinese_clearBtn.addActionListener(e -> c.btnClear(this));
+                
+                //Dung's chnages
+                english_swapBtn.addActionListener(e -> c.btnSwap(this));
+                
+                //
+                
+                
+                
+                
 		
 		mainPanel.addTab("English", createImageIcon("/images/english.gif"), english_panel, "Does nothing");
 		mainPanel.addTab("Spanish", createImageIcon("/images/spanish.gif"), spanish_panel, "hello");
