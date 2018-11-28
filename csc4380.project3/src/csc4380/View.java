@@ -582,7 +582,7 @@ public class View extends JFrame {
         setVisible(true);
         }
         public void hideSignin(){
-        dialogPanel.setVisible(false);
+        dialog.setVisible(false);
         }
         
         public void hideConvert(){
@@ -590,7 +590,9 @@ public class View extends JFrame {
         }
 	
 	public void loadUserInfo(String[] userInfo) {
-		
+            register_userTextField.setText(userInfo[0]);
+            register_passTextField.setText(userInfo[1]);
+            register_countryTextField.setText(userInfo[2]);
 	}
         
         
