@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileReader;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -19,6 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -87,7 +90,7 @@ public class View extends JFrame {
         JLabel      english_userName,        spanish_userName,       chinese_userName; 
         JLabel      english_lastConversion,  spanish_lastConversion, chinese_lastConversion; 
         JLabel      english_nativeCountry,   spanish_nativeCountry,  chinese_nativeCountry;
-        JTextArea   english_textArea,        spanish_textArea,       chinese_textArea;        
+        JTextPane   english_textArea,        spanish_textArea,       chinese_textArea;        
         
 	// True Global Variables 
         String username; 
@@ -371,15 +374,18 @@ public class View extends JFrame {
                 user_components[0][0] = english_userName = new JLabel("User Name: " + username);
                 user_components[0][1] = english_nativeCountry = new JLabel("Native Country: " + nativeCountry); 
                 user_components[0][2] = english_lastConversion = new JLabel("Last Conversion: " + lastConversion); 
-                user_components[0][3] = english_textArea = new JTextArea(10, 10); 
+                user_components[0][3] = english_textArea = new JTextPane(); 
                 user_components[1][0] = spanish_userName = new JLabel("Nombre De Usuario: " + username); 
                 user_components[1][1] = spanish_nativeCountry = new JLabel("Patria: " + nativeCountry);
                 user_components[1][2] = spanish_lastConversion = new JLabel("Ãšltima conversiÃ³n: " + lastConversion); 
-                user_components[1][3] = spanish_textArea = new JTextArea(10, 10); 
+                user_components[1][3] = spanish_textArea = new JTextPane(); 
                 user_components[2][0] = chinese_userName = new JLabel("ç”¨æˆ¶å��: " + username); 
                 user_components[2][1] = chinese_nativeCountry = new JLabel("ç¥–åœ‹: " + nativeCountry);
                 user_components[2][2] = chinese_lastConversion = new JLabel("æœ€å¾Œè½‰æ�›: " + lastConversion);                 
-                user_components[2][3] = chinese_textArea = new JTextArea(10, 10); 
+                user_components[2][3] = chinese_textArea = new JTextPane(); 
+                
+                // Initialize JTextPane 
+                TextFromFile(english_textArea); 
                         
                 for (int m = 0; m < components.length; m++) {
 			
@@ -597,6 +603,26 @@ public class View extends JFrame {
             }
         }
 	
+        /*
+          create a function to get the text from a text file 
+            and set it into a JTextPane
+        */ 
+        public static void TextFromFile(JTextPane tp)
+        {
+            try{
+            //the file path
+            String path = "C:\\Users\\trimo\\Desktop\\TextFile.txt";
+            File file = new File(path);
+            FileReader fr = new FileReader(file);
+            while(fr.read() != -1){
+              tp.read(fr,null);
+            }
+            fr.close();
+        } catch(Exception ex){
+          ex.printStackTrace();
+        }
+     }
+        
 	// Authentication Methods 
 	public void unlockProfile() {
 		
@@ -611,7 +637,7 @@ public class View extends JFrame {
         }
         
         public void hideConvert(){
-        setVisible(false);
+        setVisible(true);
         }
 	
 	public void loadUserInfo(String[] userInfo) {
