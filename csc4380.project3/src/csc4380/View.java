@@ -124,7 +124,7 @@ public class View extends JFrame {
 	}
 	
 	public void initialize_dialog() {
-		
+            
 		dialogPanel = new JPanel(); 
 		
 		dialogPanel.setLayout(new GridLayout(0, 2, 40, 10));
