@@ -106,7 +106,7 @@ public class Controller {
     
     public void btnDelete(View v) {
         m.deleteUser();
-        v.goHome();
+        //v.goHome();
     }
 
 
