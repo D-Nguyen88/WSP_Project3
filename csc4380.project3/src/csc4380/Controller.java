@@ -35,6 +35,7 @@ public class Controller {
         v.setRightVal(""+rightVal);
         m.setLastConversion(v.getRightDropDown());
         v.updateConvert(v.getRightDropDown());
+        m.writeTransactionToFile(v.getLeftDropDown(), v.getLeftText(), v.getRightDropDown(), v.getRightText());
     }
     
     
@@ -70,6 +71,8 @@ public class Controller {
         m.setNative(v.getCountry());
         v.hideSignin();
         v.showConvert();
+        v.loadUserInfo(m.getUserInfo());
+            v.setLeftDropDown(m.getCurrency());
         
     }
     

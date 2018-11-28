@@ -619,7 +619,8 @@ public class View extends JFrame {
         {
             try{
             //the file path
-            String path = "C:\\Users\\trimo\\Desktop\\TextFile.txt";
+            String localDir = System.getProperty("user.dir");
+            String path = localDir + "\\src\\resources\\transactions.txt";
             File file = new File(path);
             FileReader fr = new FileReader(file);
             while(fr.read() != -1){
@@ -648,13 +649,13 @@ public class View extends JFrame {
         }
         
         public void hideConvert(){
-        setVisible(true);
+        setVisible(false);
         }
 	
 	public void loadUserInfo(String[] userInfo) {
-            register_userTextField.setText(userInfo[0]);
-            register_passTextField.setText(userInfo[1]);
-            register_countryTextField.setText(userInfo[2]);
+            english_userName.setText("Username: " +userInfo[0]);
+            english_nativeCountry.setText("Native Country: "+userInfo[1]);
+            english_lastConversion.setText("Last Transaction: " + userInfo[2]);
 	}
         
         
