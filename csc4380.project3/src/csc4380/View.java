@@ -471,7 +471,8 @@ public class View extends JFrame {
 	}
 	
 	public String getLeftText() {
-            return Double.toString(active_leftVal);
+            //return Double.toString(active_leftVal);
+           return english_leftText.getText().toString(); 
 	}
 	
 	public String getLeftDropDown() {
@@ -480,7 +481,8 @@ public class View extends JFrame {
 	}
 	
 	public String getRightText() {
-            return Double.toString(active_rightVal); 
+            //return Double.toString(active_rightVal); 
+             return english_rightText.getText().toString(); 
 	}
 	
 	public String getRightDropDown() {
