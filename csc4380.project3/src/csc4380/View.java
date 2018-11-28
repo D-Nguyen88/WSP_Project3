@@ -1,6 +1,7 @@
 package csc4380;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -8,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileReader;
+import javax.swing.Box;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -422,9 +424,15 @@ public class View extends JFrame {
 		chinese_conversionPanel.add(chinese_btnGroup); 
 		chinese_conversionPanel.add(chinese_rightPanel);
                 
-                // Composite User Panel 		
+                // Composite User Panel 	
+                english_panel.add(Box.createRigidArea(new Dimension(50,50))); 
 		english_panel.add(english_userPanel);
-		english_panel.add(english_conversionPanel); 	
+                english_panel.add(Box.createRigidArea(new Dimension(50,50))); 
+		english_panel.add(english_conversionPanel); 
+                
+                english_panel.setAlignmentY(Component.CENTER_ALIGNMENT);   
+                      
+                
 		spanish_panel.add(spanish_userPanel); 
 		spanish_panel.add(spanish_conversionPanel); 
 		chinese_panel.add(chinese_userPanel); 
@@ -437,7 +445,7 @@ public class View extends JFrame {
                 
                 this.add(mainPanel);
 		
-		this.setSize(600, 400);
+		this.setSize(800, 500);
 		this.setVisible(true);
 		
 	}	
