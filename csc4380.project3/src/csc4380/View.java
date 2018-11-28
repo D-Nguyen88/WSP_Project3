@@ -250,6 +250,7 @@ public class View extends JFrame {
 		spanish_clearBtn.addActionListener(e -> c.btnClear(this)); 
 		chinese_clearBtn.addActionListener(e -> c.btnClear(this));
                 
+<<<<<<< HEAD
                 // Add JComboBox ActionsListneres 
                 for (int i = 0; i < components.length; i++) {
                     ((JComboBox)(components[i][2])).addActionListener(new ActionListener() {                       
@@ -271,6 +272,17 @@ public class View extends JFrame {
                     });
                     
                 }
+=======
+                //Dung's chnages
+                english_swapBtn.addActionListener(e -> c.btnSwap(this));
+                
+                //
+                
+                
+                
+                
+		
+>>>>>>> 50fccf3e4c9fd39793a3df434bdce225dd2fa0ff
 		mainPanel.addTab("English", createImageIcon("/images/english.gif"), english_panel, "Does nothing");
 		mainPanel.addTab("Spanish", createImageIcon("/images/spanish.gif"), spanish_panel, "hello");
 		mainPanel.addTab("Chinese", createImageIcon("/images/chinese.gif"), chinese_panel, "chinese words");

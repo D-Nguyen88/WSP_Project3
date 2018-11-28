@@ -66,6 +66,7 @@ public class Controller {
     {
         m.createUser(v.getSignUpUser(), v.getSignUpPass());
         v.setStatus(m.getStatus());
+        m.setNative(v.getCountry());
         
     }
     
