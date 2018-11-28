@@ -98,8 +98,8 @@ public class View extends JFrame {
         String active_rightDropDown; 
         String active_leftDropDown;
         
-	double active_rightVal = 9.99f;
-	double active_leftVal = 18.88f;
+	double active_rightVal;
+	double active_leftVal;
 	
 	// For the Controller Model
 	public String country; 
@@ -561,10 +561,37 @@ public class View extends JFrame {
         public void setNativeCountry(String nativeCountry) {
             this.nativeCountry = nativeCountry; 
         }
+        
+        public void setTextArea(String string) {
+            this.textArea = string; 
+        }
 	
-	public void updateConver(String rightDropDown) {
+	public void updateConvert(String rightDropDown) {
 		
 	}
+        
+        public void updateValues() {
+            switch(mainPanel.getSelectedIndex()) {
+                case 0:       
+                    active_rightDropDown = (String) english_rightDropdown.getSelectedItem(); 
+                    active_leftDropDown = (String) english_leftDropdown.getSelectedItem();
+                    active_rightVal = Double.parseDouble(english_rightText.getText()); 
+                    active_leftVal = Double.parseDouble(english_leftText.getText()); 
+                    break;
+                case 1:
+                    active_rightDropDown = (String) spanish_rightDropdown.getSelectedItem(); 
+                    active_leftDropDown = (String) spanish_leftDropdown.getSelectedItem();
+                    active_rightVal = Double.parseDouble(spanish_rightText.getText()); 
+                    active_leftVal = Double.parseDouble(spanish_leftText.getText()); 
+                    break;
+                case 2:
+                    active_rightDropDown = (String) chinese_rightDropdown.getSelectedItem(); 
+                    active_leftDropDown = (String) chinese_leftDropdown.getSelectedItem();
+                    active_rightVal = Double.parseDouble(chinese_rightText.getText()); 
+                    active_leftVal = Double.parseDouble(chinese_leftText.getText()); 
+                    break; 
+            }
+        }
 	
 	// Authentication Methods 
 	public void unlockProfile() {
