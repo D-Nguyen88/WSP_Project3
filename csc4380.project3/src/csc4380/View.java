@@ -641,7 +641,7 @@ public class View extends JFrame {
         }
         
         public void hideConvert(){
-        setVisible(true);
+        setVisible(false);
         }
 	
 	public void loadUserInfo(String[] userInfo) {
