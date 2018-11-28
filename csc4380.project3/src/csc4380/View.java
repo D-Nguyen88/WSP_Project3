@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
@@ -65,7 +66,7 @@ public class View extends JFrame {
 	
 	// Main Components separated by each Tab Pane
 	// Multi-Dimensional Componenet Array for handling Multi-Tabs
-	JComponent[][] components = new JComponent[2][7]; 
+	JComponent[][] components = new JComponent[3][7]; 
 	JTextField 	english_leftText,		spanish_leftText,		chinese_leftText; 
 	JTextField 	english_rightText,		spanish_rightText,		chinese_rightText; 
 	JComboBox 	english_leftDropdown,		spanish_leftDropdown,		chinese_leftDropdown;
@@ -74,15 +75,18 @@ public class View extends JFrame {
 	JButton 	english_swapBtn,		spanish_swapBtn,		chinese_swapBtn; 
 	JButton 	english_clearBtn,		spanish_clearBtn,		chinese_clearBtn;  
 	
-        JComponent[][] user_componenets = new JComponent[3][2]; 
-        JLabel english_userName,        spanish_userName,       chinese_userName; 
-        JLabel english_lastConversion,  spanish_lastConversion, chinese_lastConversion; 
-        JLabel english_nativeCountry,   spanish_nativeCountry,  chinese_nativeCountry;
+        JComponent[][] user_components = new JComponent[3][4]; 
+        JLabel      english_userName,        spanish_userName,       chinese_userName; 
+        JLabel      english_lastConversion,  spanish_lastConversion, chinese_lastConversion; 
+        JLabel      english_nativeCountry,   spanish_nativeCountry,  chinese_nativeCountry;
+        JTextArea   english_textArea,     spanish_textArea,       chinese_textArea;
+        
         
 	// True Global Variables 
         String username; 
         String lastConversion;
         String nativeCountry;
+        String textArea; 
         
 	double active_rightVal = 9.99f;
 	double active_leftVal = 18.88f;
@@ -197,8 +201,8 @@ public class View extends JFrame {
 		
 		// Combo test String 
 		String[] english_choices =  {"Argentine Peso", "Australian Dollar", "Bahraini Dinar", "Botswana Pula", "Brazilian Real", "British Pound", "Bruneian Dollar", "Bulgarian Lev", "Canadian Dollar", "Chilean Peso", "Chinese Yuan Renminbi", "Colombian Peso", "Croatian Kuna", "Czech Koruna", "Danish Krone", "Emirati Dirham", "Euro", "Hong Kong Dollar", "Hungarian Forint", "Icelandic Krona", "Indian Rupee", "Indonesian Rupiah", "Iranian Rial", "Israeli Shekel", "Japanese Yen", "Kazakhstani Tenge", "Kuwaiti Dinar", "Libyan Dinar", "Malaysian Ringgit", "Mauritian Rupee", "Mexican Peso", "Nepalese Rupee", "New Zealand Dollar", "Norwegian Krone", "Omani Rial", "Pakistani Rupee", "Philippine Peso", "Polish Zloty", "Qatari Riyal", "Romanian New Leu", "Russian Ruble", "Saudi Arabian Riyal", "Singapore Dollar", "South African Rand", "South Korean Won", "Sri Lankan Rupee", "Swedish Krona", "Swiss Franc", "Taiwan New Dollar", "Thai Baht", "Trinidadian Dollar", "Turkish Lira", "US Dollar", "Venezuelan Bolivar"};
-                String[] spanish_choices = {"Peso argentino", "Dólar australiano", "Dinar bahreiní", "Botswana Pula", "Real brasileño", "Libra esterlina", "Dólar de Brunei", "Leva búlgara", "Dólar canadiense", "Peso chileno", "Yuan renminbi chino", "Peso colombiano", "Kuna croata", "Corona checa", "Corona danesa", "Dirham emirati", "Euro", "Dólar de Hong Kong", "Florín húngaro", "Corona islandesa" , "Rupia india", "Rupia indonesia", "Rial iraní", "Shekel israelí", "Yen japonés", "Tenge de Kazajstán", "Dinar kuwaití", "Dinar libio", "Ringgit de Malasia", "Rupia de Mauricio" , "Peso mexicano", "Rupia nepalí", "Dólar neozelandés", "Corona noruega", "Rial omaní", "Rupia pakistaní", "Peso filipino", "Zloty polaco", "Riyal qatarí", "Rumano nuevo Leu "," Rublo ruso "," Riyal de Arabia Saudita "," Dólar de Singapur "," Rand sudafricano "," Won surcoreano "," Rupia de Sri Lanka "," Corona sueca "," Franco suizo "," Taiwán NuevoDólar "," Baht tailandés "," Dólar trinitense "," Lira turca "," Dólar estadounidense "," Bolívar venezolano"}; 
-                String[] chinese_choices = {"阿根廷比索","澳大利亞元","巴林第納爾","博茨瓦納普拉","巴西雷亞爾","英鎊","文萊元","保加利亞列弗","加拿大元","智利比索", "人民幣","哥倫比亞比索","克羅地亞庫納","捷克克朗","丹麥克朗","阿聯酋迪拉姆","歐元","港幣","匈牙利福林","冰島克朗" ,"印度盧比","印尼盧比","伊朗里亞爾","以色列謝克爾","日元","哈薩克斯坦堅戈","科威特第納爾","利比亞第納爾","馬來西亞林吉特","毛里求斯盧比" ,"墨西哥比索","尼泊爾盧比","新西蘭元","挪威克朗","阿曼里亞爾","巴基斯坦盧比","菲律賓比索","波蘭茲羅提","卡塔爾里亞爾","羅馬尼亞新Leu","俄羅斯盧布","沙特阿拉伯里亞爾","新加坡元","南非蘭特","韓元","斯里蘭卡盧比","瑞典克朗","瑞士法郎","台灣新美元","泰銖","特立尼達元","土耳其里拉","美元","委內瑞拉玻利瓦爾"}; 
+		String[] spanish_choices = {"Peso argentino", "DÃ³lar australiano", "Dinar bahreinÃ­", "Botswana Pula", "Real brasileÃ±o", "Libra esterlina", "DÃ³lar de Brunei", "Leva bÃºlgara", "DÃ³lar canadiense", "Peso chileno", "Yuan renminbi chino", "Peso colombiano", "Kuna croata", "Corona checa", "Corona danesa", "Dirham emirati", "Euro", "DÃ³lar de Hong Kong", "FlorÃ­n hÃºngaro", "Corona islandesa" , "Rupia india", "Rupia indonesia", "Rial iranÃ­", "Shekel israelÃ­", "Yen japonÃ©s", "Tenge de KazajstÃ¡n", "Dinar kuwaitÃ­", "Dinar libio", "Ringgit de Malasia", "Rupia de Mauricio" , "Peso mexicano", "Rupia nepalÃ­", "DÃ³lar neozelandÃ©s", "Corona noruega", "Rial omanÃ­", "Rupia pakistanÃ­", "Peso filipino", "Zloty polaco", "Riyal qatarÃ­", "Rumano nuevo Leu "," Rublo ruso "," Riyal de Arabia Saudita "," DÃ³lar de Singapur "," Rand sudafricano "," Won surcoreano "," Rupia de Sri Lanka "," Corona sueca "," Franco suizo "," TaiwÃ¡n NuevoDÃ³lar "," Baht tailandÃ©s "," DÃ³lar trinitense "," Lira turca "," DÃ³lar estadounidense "," BolÃ­var venezolano"}; 
+                String[] chinese_choices = {"é˜¿æ ¹å»·æ¯”ç´¢","æ¾³å¤§åˆ©äºžå…ƒ","å·´æž—ç¬¬ç´�çˆ¾","å�šèŒ¨ç“¦ç´�æ™®æ‹‰","å·´è¥¿é›·äºžçˆ¾","è‹±éŽŠ","æ–‡è�Šå…ƒ","ä¿�åŠ åˆ©äºžåˆ—å¼—","åŠ æ‹¿å¤§å…ƒ","æ™ºåˆ©æ¯”ç´¢", "äººæ°‘å¹£","å“¥å€«æ¯”äºžæ¯”ç´¢","å…‹ç¾…åœ°äºžåº«ç´�","æ�·å…‹å…‹æœ—","ä¸¹éº¥å…‹æœ—","é˜¿è�¯é…‹è¿ªæ‹‰å§†","æ­�å…ƒ","æ¸¯å¹£","åŒˆç‰™åˆ©ç¦�æž—","å†°å³¶å…‹æœ—" ,"å�°åº¦ç›§æ¯”","å�°å°¼ç›§æ¯”","ä¼Šæœ—é‡Œäºžçˆ¾","ä»¥è‰²åˆ—è¬�å…‹çˆ¾","æ—¥å…ƒ","å“ˆè–©å…‹æ–¯å�¦å …æˆˆ","ç§‘å¨�ç‰¹ç¬¬ç´�çˆ¾","åˆ©æ¯”äºžç¬¬ç´�çˆ¾","é¦¬ä¾†è¥¿äºžæž—å�‰ç‰¹","æ¯›é‡Œæ±‚æ–¯ç›§æ¯”" ,"å¢¨è¥¿å“¥æ¯”ç´¢","å°¼æ³Šçˆ¾ç›§æ¯”","æ–°è¥¿è˜­å…ƒ","æŒªå¨�å…‹æœ—","é˜¿æ›¼é‡Œäºžçˆ¾","å·´åŸºæ–¯å�¦ç›§æ¯”","è�²å¾‹è³“æ¯”ç´¢","æ³¢è˜­èŒ²ç¾…æ��","å�¡å¡”çˆ¾é‡Œäºžçˆ¾","ç¾…é¦¬å°¼äºžæ–°Leu","ä¿„ç¾…æ–¯ç›§å¸ƒ","æ²™ç‰¹é˜¿æ‹‰ä¼¯é‡Œäºžçˆ¾","æ–°åŠ å�¡å…ƒ","å�—é�žè˜­ç‰¹","éŸ“å…ƒ","æ–¯é‡Œè˜­å�¡ç›§æ¯”","ç‘žå…¸å…‹æœ—","ç‘žå£«æ³•éƒŽ","å�°ç�£æ–°ç¾Žå…ƒ","æ³°éŠ–","ç‰¹ç«‹å°¼é�”å…ƒ","åœŸè€³å…¶é‡Œæ‹‰","ç¾Žå…ƒ","å§”å…§ç‘žæ‹‰çŽ»åˆ©ç“¦çˆ¾"}; 
 				
 		english_leftText = new JTextField("1.0"); 
 		english_rightText = new  JTextField("1.0");
@@ -305,47 +309,63 @@ public class View extends JFrame {
 				btnGroup = chinese_btnGroup; 
 			}			
 			
+                        // Add Componenets                        
 			leftPanel.add(components[m][2]); //leftDropdown
 			rightPanel.add(components[m][3]); //rightDropdown 
 			leftPanel.add(components[m][0]); //leftText
 			rightPanel.add(components[m][1]); //rightText				
 			btnGroup.add(components[m][4]); //convertBtn 
 			btnGroup.add(components[m][5]); //swapBtn 
-			btnGroup.add(components[m][6]); //clearBtn  			 				
+			btnGroup.add(components[m][6]); //clearBtn  	
+                        
+                        // Set Layout 
+                        leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+                        btnGroup.setLayout(new BoxLayout(btnGroup, BoxLayout.Y_AXIS));
+                        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));                         
 		
+                        // Add Main ConversionPanel 
+                        
 		}
                 
                 // Initialize User Panel 
-                user_componenets[0][0] = english_userName = new JLabel("User Name" + username);
-                
-                
-                
-                
-                english_userPanel.add(english_userName); 
-                
-                
-		// Set Panel Properties 
-		english_leftPanel.setBackground(Color.green);
-		english_btnGroup.setBackground(Color.pink);
-		english_rightPanel.setBackground(Color.red);
-		english_userPanel.setBackground(Color.blue);
-		
-		// Set Layout 
-		english_leftPanel.setLayout(new BoxLayout(english_leftPanel, BoxLayout.Y_AXIS));
-		english_btnGroup.setLayout(new BoxLayout(english_btnGroup, BoxLayout.Y_AXIS));
-		english_rightPanel.setLayout(new BoxLayout(english_rightPanel, BoxLayout.Y_AXIS));
-		spanish_leftPanel.setLayout(new BoxLayout(spanish_leftPanel, BoxLayout.Y_AXIS));
-		spanish_btnGroup.setLayout(new BoxLayout(spanish_btnGroup, BoxLayout.Y_AXIS));
-		spanish_rightPanel.setLayout(new BoxLayout(spanish_rightPanel, BoxLayout.Y_AXIS));
-		chinese_leftPanel.setLayout(new BoxLayout(chinese_leftPanel, BoxLayout.Y_AXIS));
-		chinese_btnGroup.setLayout(new BoxLayout(chinese_btnGroup, BoxLayout.Y_AXIS));
-		chinese_rightPanel.setLayout(new BoxLayout(chinese_rightPanel, BoxLayout.Y_AXIS));
+                user_components[0][0] = english_userName = new JLabel("User Name: " + username);
+                user_components[0][1] = english_nativeCountry = new JLabel("Native Country: " + nativeCountry); 
+                user_components[0][2] = english_lastConversion = new JLabel("Last Conversion: " + lastConversion); 
+                user_components[0][3] = english_textArea = new JTextArea(10, 10); 
+                user_components[1][0] = spanish_userName = new JLabel("Nombre De Usuario: " + username); 
+                user_components[1][1] = spanish_nativeCountry = new JLabel("Patria: " + nativeCountry);
+                user_components[1][2] = spanish_lastConversion = new JLabel("Ãšltima conversiÃ³n: " + lastConversion); 
+                user_components[1][3] = spanish_textArea = new JTextArea(10, 10); 
+                user_components[2][0] = chinese_userName = new JLabel("ç”¨æˆ¶å��: " + username); 
+                user_components[2][1] = chinese_nativeCountry = new JLabel("ç¥–åœ‹: " + nativeCountry);
+                user_components[2][2] = chinese_lastConversion = new JLabel("æœ€å¾Œè½‰æ�›: " + lastConversion);                 
+                user_components[2][3] = chinese_textArea = new JTextArea(10, 10); 
+                        
+                for (int m = 0; m < components.length; m++) {
+			
+			JPanel userPanel = null;
 
-		english_panel.setLayout(new BoxLayout(english_panel, BoxLayout.X_AXIS));
-		spanish_panel.setLayout(new BoxLayout(spanish_panel, BoxLayout.X_AXIS));
-		chinese_panel.setLayout(new BoxLayout(chinese_panel, BoxLayout.X_AXIS));
-				
-		// Composite Panels 		
+			switch(m) {
+			case 0:
+				userPanel = english_userPanel; 
+				break; 
+			case 1:
+				userPanel = spanish_userPanel; 
+				break; 
+			case 2: 
+				userPanel = chinese_userPanel;  
+			}
+                        
+                    userPanel.add(user_components[m][0]); 
+                    userPanel.add(user_components[m][1]); 
+                    userPanel.add(user_components[m][2]); 
+                    userPanel.add(user_components[m][3]); 
+                
+                    userPanel.setLayout(new BoxLayout(userPanel, BoxLayout.Y_AXIS));
+                
+                }
+		
+ 		// Composite Conversion Panels 		
 		english_conversionPanel.add(english_leftPanel); 
 		english_conversionPanel.add(english_btnGroup); 
 		english_conversionPanel.add(english_rightPanel); 
@@ -355,7 +375,8 @@ public class View extends JFrame {
 		chinese_conversionPanel.add(chinese_leftPanel);
 		chinese_conversionPanel.add(chinese_btnGroup); 
 		chinese_conversionPanel.add(chinese_rightPanel);
-		
+                
+                // Composite User Panel 		
 		english_panel.add(english_userPanel);
 		english_panel.add(english_conversionPanel); 	
 		spanish_panel.add(spanish_userPanel); 
@@ -363,7 +384,12 @@ public class View extends JFrame {
 		chinese_panel.add(chinese_userPanel); 
 		chinese_panel.add(chinese_conversionPanel); 
 		
-		this.add(mainPanel);
+                // Set Layout for Outermost Panels 
+                english_panel.setLayout(new BoxLayout(english_panel, BoxLayout.X_AXIS));
+                spanish_panel.setLayout(new BoxLayout(spanish_panel, BoxLayout.X_AXIS)); 
+                chinese_panel.setLayout(new BoxLayout(chinese_panel, BoxLayout.X_AXIS)); 
+                
+                this.add(mainPanel);
 		
 		this.setSize(600, 400);
 		this.setVisible(true);
