@@ -475,7 +475,8 @@ public class View extends JFrame {
 	}
 	
 	public String getLeftDropDown() {
-            return active_leftDropDown;
+            //return active_leftDropDown;
+            return english_leftDropdown.getSelectedItem().toString();
 	}
 	
 	public String getRightText() {
@@ -483,7 +484,8 @@ public class View extends JFrame {
 	}
 	
 	public String getRightDropDown() {
-            return active_rightDropDown; 
+            //return active_rightDropDown; 
+             return english_rightDropdown.getSelectedItem().toString();
 	}
 	
 	// Control Methods SETTERS 
